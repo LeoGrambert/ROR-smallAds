@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
-  get 'pages/home'
+  root 'smallads#home'
+
+  get '/show/id' => 'smallads#show'
+
+  get '/add' => 'smallads#add'
+
+  get '/update/id' => 'smallads#update'
+
+  get '/delete/id' => 'smallads#delete'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
