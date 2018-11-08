@@ -1,5 +1,6 @@
 class SmalladsController < ApplicationController
   def home
+    @advertisements = Advertisement.all
   end
 
   def show
