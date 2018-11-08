@@ -15,4 +15,7 @@ class SmalladsController < ApplicationController
   def delete
   end
 
+  def newUser
+  end
+
 end

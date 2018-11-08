@@ -1,2 +1,6 @@
-<h1>Petites annonces</h1>
-<p>Page pour ajouter une anonce</p>
+<h1>Ajouter une annonce</h1>
+<%= form_tag "/add", method: "post" do %>
+  <input type="text" name="Titre" />
+  <input type="textarea" name="content" />
+  <input type="submit" value="Soumettre" />
+<% end %>
