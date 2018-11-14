@@ -1,0 +1,10 @@
+<h1>Connexion</h1>
+<a href="/">Retourner à l'accueil</a>
+<%= form_tag "/users/login", method: :post do %>
+  <input type="text" name="name" /><br />
+  <input type="password" name="password" /><br />
+  <input type="submit" value="Se connecter" />
+<% end %>
+<p>
+  Vous n'avez pas encore de compte ? <a href="/users/new" title="Formulaire d'inscription">Inscrivez-vous</a>
+</p>

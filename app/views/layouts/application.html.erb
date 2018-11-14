@@ -38,6 +38,12 @@
           <a href="/" class="navbar-brand d-flex align-items-center">
             <strong>Accueil</strong>
           </a>
+          <% if @current_user %>
+            <a href='/users/login'>Se connecter</a>
+            <a href='/users/new'>S'inscrire</a>
+          <% else %>
+            <a href='/'>Se deconnecter</a>
+          <% end %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -46,6 +52,7 @@
     </header>
 
     <div class="container">
+      <div><%= flash[:info] %></div>
       <%= yield %>
     </div>
 

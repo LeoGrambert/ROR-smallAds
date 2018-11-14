@@ -1,5 +1,8 @@
 class SmalladsController < ApplicationController
   def home
+    if session[:id]
+      @current_user = User.find(session[:id])
+    end
     @advertisements = Advertisement.all
   end
 
@@ -14,8 +17,4 @@ class SmalladsController < ApplicationController
 
   def delete
   end
-
-  def newUser
-  end
-
 end

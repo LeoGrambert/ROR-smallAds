@@ -9,7 +9,14 @@ Rails.application.routes.draw do
 
   get '/delete/id' => 'smallads#delete'
 
-  get '/users/new' => 'smallads#newUser'
+  get '/users/new' => 'users#new'
+
+  post '/users/new' => 'users#create'
+
+  get '/users/login' => 'users#login'
+
+  post 'users/login' => 'users#check'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
