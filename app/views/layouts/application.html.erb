@@ -39,10 +39,10 @@
             <strong>Accueil</strong>
           </a>
           <% if @current_user %>
+            <a href='/users/logout'>Se deconnecter</a>
+          <% else %>
             <a href='/users/login'>Se connecter</a>
             <a href='/users/new'>S'inscrire</a>
-          <% else %>
-            <a href='/'>Se deconnecter</a>
           <% end %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,7 +52,10 @@
     </header>
 
     <div class="container">
-      <div><%= flash[:info] %></div>
+      <% if flash.present? %>
+        <div class="alert alert-info"><%= flash[:info] %></div>
+        <div class="alert alert-error"><%= flash[:error] %></div>
+      <% end %>
       <%= yield %>
     </div>
 

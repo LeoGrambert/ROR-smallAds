@@ -2,24 +2,30 @@ class UsersController < ApplicationController
   def login
   end
 
+  def logout
+    session[:id] = nil
+    flash[:info] = "Vous avez bien été déconnecté"
+    redirect_to "/"
+  end
+
   def new
   end
 
   def create
-    User.create login: params[:Login], password: params[:Password]
+    User.create login: params[:login], password: params[:password]
     flash[:info] = "Bienvenue #{params[:login]} !"
     redirect_to "/"
   end
 
 
   def check
-    @current_user = User.where(login: params[:Login], password: params[:Password]).first
+    @current_user = User.where(login: params[:login], password: params[:password]).first
     if @current_user
-      session[:user_id] = @current_user.id
+      session[:id] = @current_user.id
       flash[:info] = "Bienvenue #{@current_user.login} !"
       redirect_to "/"
     else
-      session[:user_id] = nil
+      session[:id] = nil
       flash[:info] = "Échec de la connexion"
       redirect_to "/users/login"
     end
