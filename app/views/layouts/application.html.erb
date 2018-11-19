@@ -52,9 +52,11 @@
     </header>
 
     <div class="container">
-      <% if flash.present? %>
+      <% if flash[:info].present? %>
         <div class="alert alert-info"><%= flash[:info] %></div>
-        <div class="alert alert-error"><%= flash[:error] %></div>
+      <% end %>
+      <% if flash[:error].present? %>
+        <div class="alert alert-danger"><%= flash[:error] %></div>
       <% end %>
       <%= yield %>
     </div>

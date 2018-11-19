@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   def login
+    if session[:id]
+      redirect_to "/"
+    end
   end
 
   def logout
@@ -9,6 +12,9 @@ class UsersController < ApplicationController
   end
 
   def new
+    if session[:id]
+      redirect_to "/"
+    end
   end
 
   def create

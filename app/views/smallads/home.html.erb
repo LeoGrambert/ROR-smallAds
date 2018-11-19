@@ -18,7 +18,9 @@
       <% end %>
       <p>
         <a href="#advertisement" class="btn btn-primary my-2">Voir toutes les annonces</a>
-        <a href="/add" class="btn btn-secondary my-2">Soumettre une annonce</a>
+        <% if @current_user %>
+          <a href="/advertisements/new" class="btn btn-secondary my-2">Soumettre une annonce</a>
+        <% end %>
       </p>
     </div>
   </section>

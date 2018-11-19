@@ -1,6 +1,12 @@
 <h1>Ajouter une annonce</h1>
-<%= form_tag "/add", method: "post" do %>
-  <input type="text" name="Titre" />
-  <input type="textarea" name="content" />
-  <input type="submit" value="Soumettre" />
+<%= form_tag "/advertisements/new", method: "post" do %>
+  <div class="form-group">
+    <label for="title">Titre de l'annonce</label>
+    <input type="text" name="title" class="form-control" id="title" required />
+  </div>
+  <div class="form-group">
+    <label for="content">Contenu</label>
+    <textarea name="content" rows="8" class="form-control" id="content" required></textarea>
+  </div>
+  <input type="submit" value="Soumettre" class="btn btn-primary" />
 <% end %>
