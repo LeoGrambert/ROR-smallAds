@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
   root 'smallads#home'
 
-  get '/advertisements/id' => 'smallads#show'
+  get '/advertisement/:id' => 'smallads#show'
 
   get '/advertisements/new' => 'smallads#add'
 
   post '/advertisements/new' => 'smallads#check'
 
-  get '/advertisements/update/id' => 'smallads#update'
+  patch '/advertisement/update/:id' => 'smallads#update'
 
-  get '/advertisements/delete/id' => 'smallads#delete'
+  patch '/advertisement/delete/:id' => 'smallads#delete'
 
   get 'users/new' => 'users#new'
 

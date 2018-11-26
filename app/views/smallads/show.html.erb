@@ -1,1 +1,34 @@
-<p>Page affichant une annonce</p>
+<div class="container">
+  <h1><%= @advertisement.title %></h1>
+  <p>
+    <%= @advertisement.content %>
+  </p>
+  <hr>
+  <p>
+  Auteur: <em><%= @advertisement.author %></em><br>
+  </p>
+  <hr>
+  <% if @current_user.try(:role) == "admin" %>
+
+  <h2>Vous êtes administrateur</h2>
+
+    <% if @advertisement.try(:state) == "0" %>
+
+    <p>
+      Vous avez la lourde tâche de valider ou de supprimer l'annonce.
+    </p>
+
+      <%= form_tag "/advertisement/update/#{@advertisement.id}", method: "patch" do %>
+      <input type="hidden" name="id" value="<%= @advertisement.id %>" />
+      <input type="submit" value="Valider et publier" class="btn btn-primary" style="margin: 10px;" />
+      <% end %>
+
+    <% end %>
+
+    <%= form_tag "/advertisement/delete/#{@advertisement.id}", method: "patch" do %>
+    <input type="hidden" name="id" value="<%= @advertisement.id %>" />
+    <input type="submit" value="Supprimer" class="btn btn-danger" style="margin: 10px;" />
+    <% end %>
+
+  <% end %>
+</div>

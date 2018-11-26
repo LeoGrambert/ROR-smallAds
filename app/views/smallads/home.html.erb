@@ -30,22 +30,45 @@
 
       <div class="row">
 
-        <% @advertisements.each do |ad| %>
+      <% if @current_user.try(:role) == "admin" %>
+        <% @advertisements_admin.each do |ad| %>
           <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
-              <div class="card-body">
+              <div class="card-body" style="height:300px;">
                 <p class="card-text"><%= ad.title %></p>
+                <em class="card-text" style="overflow:scroll; margin:10px;"><%= ad.content %></em>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Afficher</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Editer</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Supprimer</button>
+                    <p>
+                      <a href="/advertisement/<%= ad.id %>" title="Afficher" style="display:block; margin-top:20px;"><button type="button" class="btn btn-sm btn-outline-secondary">Afficher</button></a>
+                    </p>
+                    <% if ad.try(:state) == "0" %>
+                      <p>
+                        <em style="margin:20px 0 0 10px; font-size:10px; display:block;" >Annonce non visible par la communauté. Vous devez la valider.</em>
+                      </p>
+                    <% end %>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         <% end %>
+      <% else %>
+        <% @advertisements_user.each do |ad| %>
+          <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+              <div class="card-body">
+                <p class="card-text"><%= ad.title %></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="/advertisement/<%= ad.id %>" title="Afficher"><button type="button" class="btn btn-sm btn-outline-secondary">Afficher</button></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
 
       </div>
     </div>
