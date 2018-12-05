@@ -1,12 +1,40 @@
 <div class="container">
-  <h1><%= @advertisement.title %></h1>
+  <h1>Titre : <%= @advertisement.title %></h1>
+  <h2>Prix : <%= @advertisement.price %> €</h2>
   <p>
-    <%= @advertisement.content %>
+    Contenu : <%= @advertisement.content %>
   </p>
   <hr>
   <p>
-  Auteur: <em><%= @advertisement.author %></em><br>
+  Auteur : <em><%= @advertisement.author %></em><br>
   </p>
+  <% if @current_user %>
+  <hr>
+  <h3>Espace commentaire :</h3>
+
+  <% @comments.each do |comment| %>
+    <div class="col-md-10" style="margin-top: 20px;">
+      <div class="card mb-10 shadow-sm">
+        <div class="card-body">
+          <p class="card-text"><strong><%= comment.author %></strong></p>
+          <p class="card-text"><%= comment.content %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <%= form_tag "/comments/new", method: "post" do %>
+    <div class="form-group">
+      <input type="hidden" name="id" class="form-control" id="id" value="<%= @advertisement.id %>" required />
+    </div>
+    <div class="form-group">
+      <label for="contentComment">Publier un commentaire</label>
+      <textarea name="contentComment" rows="2" class="form-control" id="contentComment" required></textarea>
+    </div>
+    <input type="submit" value="Ajouter le commentaire" class="btn btn-primary" />
+  <% end %>
+<% end %>
+
   <hr>
   <% if @current_user.try(:role) == "admin" %>
 

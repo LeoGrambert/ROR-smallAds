@@ -12,6 +12,7 @@ class SmalladsController < ApplicationController
       @current_user = User.find(session[:id])
     end
     @advertisement = Advertisement.find params[:id]
+    @comments = Comment.where advertisements_id: params[:id]
   end
 
   def add
@@ -29,7 +30,7 @@ class SmalladsController < ApplicationController
       return redirect_to '/users/new'
     else
       @current_user = User.find(session[:id])
-      Advertisement.create title: params[:title], content: params[:content], author: @current_user.login, state: 0
+      Advertisement.create title: params[:title], price: params[:price], content: params[:content], author: @current_user.login, state: 0
       redirect_to "/"
     end
   end

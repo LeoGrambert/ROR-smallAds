@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_08_160035) do
+ActiveRecord::Schema.define(version: 2018_12_05_154640) do
 
   create_table "advertisements", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.string "author"
     t.string "state"
+    t.integer "price"
   end
 
   create_table "comments", force: :cascade do |t|
